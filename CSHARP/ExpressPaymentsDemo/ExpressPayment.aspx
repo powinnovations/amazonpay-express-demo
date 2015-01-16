@@ -50,7 +50,7 @@ limitations under the License.
     <div id="AmazonPayButton"></div>
 
     <script type="text/javascript">
-        OffAmazonPayments.Button("AmazonPayButton", "A2MQTZXPTWUGRJ", {
+        OffAmazonPayments.Button("AmazonPayButton", "YOUR_SELLER_ID_HERE", {
 
             type: "hostedPayment",
 
