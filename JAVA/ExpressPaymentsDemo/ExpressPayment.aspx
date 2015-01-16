@@ -50,8 +50,6 @@ limitations under the License.
     <div id="AmazonPayButton"></div>
 
     <script type="text/javascript">
-        //alert(parseInt($("#amount").attr("value")) * parseInt($("#QuantitySelect option:selected").val()));
-        var Amount, CurrencyCode, SellerNote;
         OffAmazonPayments.Button("AmazonPayButton", "A2MQTZXPTWUGRJ", {
 
             type: "hostedPayment",
