@@ -45,7 +45,7 @@ class HomeController < ApplicationController
     shipping_address_required: shipping_address_required, payment_action: payment_action
     )
 
-    # Run client. This output will be in json format. The page will now render json. No view is required for this method.
+    # The output will be in json format. The page will render json. No view is required for this method.
 
     render :json => client.signature
 
