@@ -1,19 +1,17 @@
 <h1>Login and Pay Express Integration</h1>
 
 <label for="tshirt">Item Name: Long Sleeve Tshirt</label>
-<br>
-<div id="amount" value="100">Price: $100</div>
+<div id="amount" class="spacing" value="100">Price: $100</div>
 <label for="quantity">Qty:</label>
 
-<select id="QuantitySelect">
+<select id="QuantitySelect" class="spacing">
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
   <option value="4">4</option>
 </select>
-<br><br>
 
-<div id="AmazonPayButton"></div>
+<div id="AmazonPayButton" class="spacing"></div>
 
 <script type="text/javascript">
 OffAmazonPayments.Button("AmazonPayButton", "<%= Rails.application.secrets.seller_id %>", {
