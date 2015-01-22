@@ -1,4 +1,4 @@
-##`PHP` - Pay with Amazon - Custom Integration Express Demo. 
+###`PHP` - Pay with Amazon - Custom Integration Express Demo. 
 ####Setup Procedure
 * Add the PHP files to your server directory.
 * Add Your `Seller ID`, `MWS Accesskey`, `MWS secret Key`, `Login with Amazon Client ID` to the [`Express.config.php`](https://github.com/amzn/pay-with-amazon-express-demo/tree/master/php/Express.config.php)
