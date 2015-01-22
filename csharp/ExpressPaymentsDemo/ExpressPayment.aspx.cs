@@ -1,20 +1,4 @@
-﻿/*-*-**-***-*****-********-*************
-Pay with Amazon Express Payments Demo
-Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); 
-*-*-**-***-*****-********-*************
-
-You may not use this file except in compliance with the License. You may obtain 
-a copy of the License at: 
-
-http://aws.amazon.com/apache2.0/
-
-or in the "license" file accompanying this file. This file is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
-implied. See the License for the specific language governing permissions and 
-limitations under the License.
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,7 +28,8 @@ public partial class ExpressPayment : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     { }
 
-    /* supporting doc :http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6 */
+    /* view session state to prevent cross-site request forgery
+	 *supporting doc :http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6 */
     protected override void OnInit(EventArgs e)
     {
         ViewStateUserKey = Session.SessionID;
@@ -70,7 +55,10 @@ public partial class ExpressPayment : System.Web.UI.Page
             throw new ArgumentNullException("lwaClientId", "lwaClientId is NULL, set the value in the configuration file ");
 
         string amount = Amount;
-        string returnURL = "https://dsenetsdk.ant.amazon.com/ExpressPaymentsDemo/success.aspx";//The webpage of your site where your customer should be redirected to after the order is successful
+		/* Add http:// or https:// before your Return URL 
+		 *The webpage of your site where your customer should be redirected to after the order is successful
+		 *In this example you can link it to the success.aspx to see the GET parameters*/
+        string returnURL = "RETURN_URL_OF_YOUR_SITE";
 
         // Optional fields
         string currencyCode = CurrencyCode;
@@ -89,7 +77,6 @@ public partial class ExpressPayment : System.Web.UI.Page
         parameters.Add("currencyCode", currencyCode);
         parameters.Add("shippingAddressRequired", "true");
         parameters.Add("paymentAction", paymentAction);
-        parameters.Add("sellerOrderId", "12345678");
 
         string Signature = SignParameters(parameters, secretKey);
 
@@ -104,7 +91,7 @@ public partial class ExpressPayment : System.Web.UI.Page
 
 
     /**
-      * Convert Dictionary of paremeters to Url encoded query string
+      * Convert Dictionary of parameters to URL encoded query string
       */
     private static string GetParametersAsString(IDictionary<String, String> parameters)
     {
