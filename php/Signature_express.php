@@ -49,13 +49,13 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     
     uksort($parameters, 'strcmp');
     
-    //call the function to sign the paramters and retirn the URL encoded signature
+    //call the function to sign the parameters and return the URL encoded signature
     $Signature = _urlencode(_signParameters($parameters, $secretKey));
     
-    //add the signature to the paramters data structure
+    //add the signature to the parameters data structure
     $parameters["signature"] = $Signature;
     
-    //echoing the parameters is picked up by the ajax success function in the front end
+    //echoing the parameters will be picked up by the ajax success function in the front end
     echo (json_encode($parameters));
 }
     
