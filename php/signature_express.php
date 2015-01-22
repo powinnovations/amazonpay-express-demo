@@ -1,22 +1,6 @@
--*-**-***-*****-********-*************
-Pay with Amazon Express Payments Demo
-Copyright 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-Licensed under the Apache License, Version 2.0 (the "License"); 
-*-*-**-***-*****-********-*************
-
-You may not use this file except in compliance with the License. You may obtain 
-a copy of the License at: 
-
-http://aws.amazon.com/apache2.0/
-
-or in the "license" file accompanying this file. This file is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
-implied. See the License for the specific language governing permissions and 
-limitations under the License.
-
 <?php
 
-require_once 'express.config.php';
+require_once 'Express.config.php';
 session_start();
 
 if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
@@ -25,15 +9,18 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     
     // Mandatory fields
     $amount      = $_REQUEST["amount"];
-    $returnURL   = "RETURN URL OF YOUR SITE";//The webpage of your site where your customer should be redirected to after the order is successful
+    
+    /*The webpage of your site where your customer should be redirected to after the order is successful
+     *In this example you can link it to success.php
+     **/
+    $returnURL   = "RETURN_URL_OF_YOUR_SITE";
     
     // Optional fields
     $currencyCode            = $_REQUEST["currencyCode"];
     $sellerNote              = $_REQUEST["sellerNote"];
-    $sellerOrderId           = "YOUR CUSTOM ORDER REFERENCE ID";
-    $storeName               = "YOUR STORENAME";
+    $sellerOrderId           = "YOUR_CUSTOM_ORDER_REFERENCE_ID";
     $shippingAddressRequired = "true";
-    $paymentAction           = "AuthorizeAndCapture";
+    $paymentAction           = "AuthorizeAndCapture"; // other values None,Authorize
     
     // Getting the MerchantID/sellerID, MWS secret Key, MWS Access Key from the configuration file
     if ($merchantId == "") {
