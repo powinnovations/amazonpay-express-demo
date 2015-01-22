@@ -55,9 +55,11 @@ public partial class ExpressPayment : System.Web.UI.Page
             throw new ArgumentNullException("lwaClientId", "lwaClientId is NULL, set the value in the configuration file ");
 
         string amount = Amount;
-		/* Add http:// or https:// before your Return URL 
-		 *The webpage of your site where your customer should be redirected to after the order is successful
-		 *In this example you can link it to the success.aspx to see the GET parameters*/
+		
+        /* Add http:// or https:// before your Return URL
+         * The webpage of your site where your customer should be redirected to after the order is successful
+         * In this example you can link it to the success.aspx to see the GET parameters
+         */
         string returnURL = "RETURN_URL_OF_YOUR_SITE";
 
         // Optional fields
