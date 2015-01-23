@@ -1,4 +1,4 @@
-###`Java` - Pay with Amazon - Custom Integration Express Demo. 
+###`Java` - Pay with Amazon - Express Demo
 ####Setup Procedure
 * In your IDE open the project `ExpressPaymentsDemo` and start your Tomcat server
 * Add Your `Seller ID`, `MWS Accesskey`, `MWS secret Key`, `Login with Amazon Client ID` to the [`Express.config.properties`](https://github.com/amzn/pay-with-amazon-express-demo/blob/master/java/ExpressPaymentsDemo/src/java/Express.config.properties)

@@ -1,4 +1,4 @@
-###`csharp` - Pay with Amazon - Custom Integration Express Demo. 
+###`csharp` - Pay with Amazon - Express Demo
 ####Setup Procedure
 * In Visual Studio open `Website` and provide the `ExpressPaymentsDemo` folder as the location
 * Add Your `Seller ID`, `MWS Accesskey`, `MWS secret Key`, `Login with Amazon Client ID` to the [`Web.config`](https://github.com/amzn/pay-with-amazon-express-demo/blob/master/csharp/ExpressPaymentsDemo/Web.config)

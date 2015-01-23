@@ -1,1 +1,29 @@
-#IntroductionLogin and Pay with Amazon provides millions of buyers a secure, trusted, and convenient way to pay fortheir purchases on your site. To complete their purchase, buyers simply select a shipping address andpayment method stored in their Amazon Payments account.  #####Custom integration can be used in the following scenarios                                           * If your parameters will change dynamically on the checkout page and cannot be preloaded.* If you have a multiitem shopping cart.* if your store contains multiple items wherein using static buttons for each item is not feasible. #####Scope of the Examples                                                                           * Examples are showcased in languages such as `PHP`, `C#`, `Java`, `Ruby`.* A simple cart page with Item name and Quantity.* The [dynamic parameters](https://github.com/amzn/pay-with-amazon-express-demo#dynamic-parameters) are passed to the backend and the signature is calculated.* Signature is appended to a data-structure along with the other parameters and encoded in JSON.* The JSON encoded String is then passed through the Javascript in the Front End.* The checkout process begins once the signature and the other required input parameters are verified.    ######For Language specific installation and configuration instructions take a peek at the readme files in the folders above                                                                   #Getting Started                                                                                To use the Pay with Amazon button you will need the following:                              1.	Register with Amazon Payments                                                           2.	Download this project as a zip or clone the project#Dynamic Parameters#####1. `amount`The amount of the payment.##### 2. `sellerNote`The message that will appear in the checkout pages.	`Max length: 1024 characters`#####3. `sellerOrderId`The seller specified identifier of this order. This is displayed in buyer emails and in the transaction history on the Amazon Payments website.                                                             We recommend that you use the following characters only   `lowercase a-z`, `uppercase A-Z`, `numbers 0-9`, `dash (-)`, or `underscore (_)`.  `Max length: 50 characters`                                                           #####4. `currencyCode`The currency to use to charge the buyer.                                                        Default: current seller region                                                                  `Example: USD`
+#Introduction
+Have a simple payments need? [Express Integration](https://payments.amazon.com/developer/community) is a the quickest way to enable [Pay with Amazon](https://payments.amazon.com/) on your web and mobile sites. For simple purchases where you already know the tax and shipping costs, you can setup with Express Integration in minutes by adding simple HTML and JavaScript snippets. The demos includes in this repository show how to perform an Express Integration in various languages (C#, Java, PHP, Ruby).
+
+#####These examples are suitable for the following scenarios:
+* If your parameters will change dynamically on the checkout page and cannot be preloaded.
+* If you have a multi-item shopping cart.
+* If your store contains multiple items wherein using static buttons for each item is not feasible. 
+
+#####The demos follow this pattern:
+* A simple cart page is displayed with Item name and Quantity.
+* The [dynamic parameters](https://github.com/amzn/pay-with-amazon-express-demo#dynamic-parameters) are passed to the backend and a signature is calculated.
+* The signature is appended to a data-structure along with the other parameters and encoded in JSON.
+* The JSON-encoded string is then passed through the Javascript in the frontend.
+* The checkout process begins once the signature and the other required input parameters are verified.
+    
+######For language-specific installation and configuration instructions, please see the readme file in the subdirectory of the language of your choice. To run the demos you will also need to [register with Amazon Payments](https://payments.amazon.com/signup).
+
+#Dynamic Parameters
+#####1. `amount`
+The amount of the payment.
+##### 2. `sellerNote`
+The message that will appear in the checkout pages (maximum length of 1024 characters).
+#####3. `sellerOrderId`
+The seller-specified identifier of this order. This is displayed in emails to your buyers and in the transaction history on the Amazon Payments website.                                                             
+We recommend that you use the following characters only:
+`lowercase a-z`, `uppercase A-Z`, `numbers 0-9`, `dash (-)`, or `underscore (_)`.  
+`Max length: 50 characters`                                                           
+#####4. `currencyCode`
+The currency to use to charge the buyer (eg - 'USD'). This defaults to currency for your region.
