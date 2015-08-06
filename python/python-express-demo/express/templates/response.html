@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock head %}
+
+{% block content %}
+    <div class="panel panel-default" style="margin-top:25px;">
+        <div class="panel-body">
+            <div style="text-align:center; margin:50px;">
+                <div>Result Code: {{ result_code }}</div>
+                <div>Order Reference: {{ oro }}</div>
+                <div>Seller Order Id: {{ seller_order_id }}</div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

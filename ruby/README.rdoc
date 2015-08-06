@@ -1,0 +1,30 @@
+== README
+
+This is a Ruby on Rails Pay with Amazon Express Demo.
+
+Setup procedure:
+
+1. Set your seller keys and optional parameters in config/secrets.yml
+2. Run the server (rails s)
+3. Use a sandbox test account to login
+
+
+
+
+Express Amazon Payments Client:
+ lib/express_amazon_payments.rb
+
+Demo Controller:
+ app/controllers/home_controller.rb
+
+Demo View:
+ app/views/home/index.html.erb
+
+Sandbox JavaScript:
+ app/views/layouts/_express_script_tags.html.erb
+
+App Config:
+ config/secrets.yml
+
+
+Rails version: 4.2.0

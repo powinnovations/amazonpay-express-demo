@@ -1,0 +1,36 @@
+<h1>Login and Pay Express Integration</h1>
+
+<label for="tshirt">Item Name: Long Sleeve Tshirt</label>
+<div id="amount" class="spacing" value="100">Price: $100</div>
+<label for="quantity">Qty:</label>
+
+<select id="QuantitySelect" class="spacing">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+
+<div id="AmazonPayButton" class="spacing"></div>
+
+<script type="text/javascript">
+OffAmazonPayments.Button("AmazonPayButton", "<%= Rails.application.secrets.seller_id %>", {
+
+  type: "hostedPayment",
+
+  hostedParametersProvider: function(done) {
+
+    $.getJSON('/home/signature', {
+      amount: parseInt($("#amount").attr("value")) * parseInt($("#QuantitySelect option:selected" ).val()),
+      currency_code: 'USD',
+      seller_note:'Testing Dynamic Express Amazon Payments'
+
+    }, function(data) {
+      done(data);
+    })
+  },
+  onError: function(errorCode) {
+    console.log(errorCode.getErrorCode() + " " + errorCode.getErrorMessage());
+  }
+});
+</script>

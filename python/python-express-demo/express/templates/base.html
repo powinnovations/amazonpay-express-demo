@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        
+        <style>
+            body {
+                padding-top: 40px;
+                padding-bottom: 50px;
+            }
+            .lpa-sdk {
+                padding: 40px 15px;
+                text-align: center;
+            }
+            .input-group {
+                margin-bottom:10px;
+            }
+            #go-home {
+                cursor:pointer;
+            }
+            pre code {
+                overflow:scroll;
+                word-wrap:normal;
+                white-space:pre;
+            }
+        </style>
+    {% endblock head %}
+    </head>
+    <body>
+        <div class="container">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand start-over" href="#">Login and Pay Express Python Demo</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="jumbotron" style="padding-top:25px;" id="api-content">
+                <div id="section-content">
+                {% block content %}
+                {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

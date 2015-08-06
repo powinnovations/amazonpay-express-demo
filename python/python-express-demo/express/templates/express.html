@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock head %}
+
+{% block content %}
+    <h2>Express Demo</h2>
+    <p style="margin-top:20px;">This is a test cart to show which calls need to 
+    be made to allow a buyer to make a purchase. You will need a <strong>test account</strong> 
+    before proceeding. Test accounts can be created in Seller Central.</p>
+    <p>Note: This is a <strong>sandbox</strong> transaction. Your <strong>payment method</strong> will <strong>not be charged</strong>.</p>
+    <div class="panel panel-default" style="margin-top:25px;">
+        <div class="panel-body">
+            <div style="text-align:center; margin-top:20px;">
+                <div style="margin:10px;">Select Amount</div>
+                <div class="btn-group btn-group-lg" role="group" aria-label="amount-selector">
+                    <button type="button" class="btn btn-default active" amount="25">$25</button>
+                    <button type="button" class="btn btn-default" amount="50">$50</button>
+                    <button type="button" class="btn btn-default" amount="100">$100</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin-bottom:45px;" id="AmazonPayButton"></div>
+    </div>
+    <input type="hidden" id="purchase-amount" value="25" />
+    <script type='text/javascript'>
+        window.onAmazonLoginReady = function () {
+            amazon.Login.setClientId('{{ session['client_id'] }}');
+        };
+    </script>
+    <script type='text/javascript' src='https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js'></script>
+    <script type='text/javascript'>
+        $(".btn-group > .btn").click(function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            $("#purchase-amount").val($(this).attr("amount"));
+        });
+        OffAmazonPayments.Button("AmazonPayButton", "{{ merchant_id }}", {
+            type: "hostedPayment",
+            hostedParametersProvider: function(done) {
+                $.getJSON("/python-express-demo/express_signature", {
+                    amount: parseInt($("#purchase-amount").val()),
+                    currencyCode: "USD",
+                    sellerNote: "My custom seller note.",
+                    sellerOrderId: "ORDER12345"
+                }, function(data) {
+                    done(data);
+                })
+            },
+            onError: function(errorCode) {
+                alert(errorCode.getErrorCode() +" "+ errorCode.getErrorMessage());
+            }
+        });
+    </script>
+{% endblock content %}
