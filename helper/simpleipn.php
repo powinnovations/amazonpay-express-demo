@@ -2,7 +2,9 @@
 
 /* This is a stand-alone IPN handler. It will validate the IPN and set some 
  * variables you can use to do your own parsing and handling. You can modify 
- * the section near the bottom of this script.
+ * the section near the bottom of this script. For now, it will log all IPNs
+ * to your /tmp folder assuming you are on Linux. You can modify the path 
+ * below.
  */
 
 $header = getallheaders();
