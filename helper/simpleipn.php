@@ -1,12 +1,24 @@
 <?php
 
-/* This is a stand-alone IPN handler. It will validate the IPN and set some 
- * variables you can use to do your own parsing and handling. You can modify 
- * the section near the bottom of this script. For now, it will log all IPNs
- * to your /tmp folder assuming you are on Linux. You can modify the path 
- * below.
+/*
+ * SimpleIPN - This script will verify, parse, and email IPN data. This
+ * script will only recognize IPNs generated from an Express button. Your
+ * server must be configured to send email (e.g. sendmail).
  */
 
+// Who do you want emails to be sent to?
+$to = "changeme@example.com";
+
+// Which notifications do you want to receive?
+$ipn_authorize = true;
+$ipn_capture = true;
+$ipn_refund = true;
+$ipn_close = true;
+
+
+
+
+/* You shouldn't need to edit anything below this line */
 $header = getallheaders();
 $body = file_get_contents("php://input");
 
@@ -18,6 +30,8 @@ if (isset($header["x-amz-sns-message-type"])) {
 }
 
 function parseIpn($header, $body) {
+    global $ipn_authorize, $ipn_capture, $ipn_refund, $ipn_close, $to;
+
     if (!array_key_exists("x-amz-sns-message-type", $header)) {
         return "Invalid SNS message type in header.";
     }
@@ -62,12 +76,75 @@ function parseIpn($header, $body) {
         $marketplaceId = $message["MarketplaceID"];
         $xml = simplexml_load_string($message["NotificationData"]);
         $data = json_decode(json_encode($xml), true);
+        $subject = "";
+        $message = "";
+        $sendit = false;
+        $headers = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $headers .= 'From: SimpleIPN' . "\r\n";
+        $message = "<html><head><title>SimpleIPN</title></head><body>" . pp($data) . "</body></html>";
 
-        /* Here, we output the contents of the response XML (data) to a file.
-         * You can add your IPN handling loginc here.
-         */
-        file_put_contents("/tmp/ipn_{$messageId}", print_r($data, true));
+        switch ($type) {
+            case "OrderReferenceNotification":
+                if ($ipn_close) {
+                    $sendit = true;
+                }
+                $subject = "Order Reference Notification";
+                break;
+
+            case "PaymentAuthorize":
+                if ($ipn_authorize) {
+                    $sendit = true;
+                }
+                $subject = "Payment Authorize Notification";
+                break;
+
+            case "PaymentCapture":
+                if ($ipn_capture) {
+                    $sendit = true;
+                }
+                $subject = "Payment Capture Notification";
+                break;
+
+            case "PaymentRefund":
+                if ($ipn_refund) {
+                    $sendit = true;
+                }
+                $subject = "Payment Refund Notification";
+                break;
+            default:
+                $sendit = false;
+        }
+        if ($subject === "") {
+            $sendit = false;
+        }
+        if ($to === "changeme@example.com") {
+            $sendit = false;
+        }
+
+        if ($sendit) {
+            mail($to, $subject, $message, $headers);
+        }
+
+
+        /* If you want to log to a file you can do something like this */
+        //file_put_contents("/tmp/ipn_{$type}_{$messageId}", print_r($data, true));
     } else {
         return "Invalid signature.";
     }
+}
+
+function pp($arr) {
+    $retStr = '<ul style="margin-left:5px; margin-right:0; padding-left:10px; padding-right:0;">';
+    if (is_array($arr)) {
+        foreach ($arr as $key => $val) {
+            if (is_array($val)) {
+                $retStr .= '<li>' . $key . ': ' . pp($val) . '</li>';
+            } else {
+                $retStr .= '<li>' . $key . ': ' . $val . '</li>';
+            }
+        }
+    }
+    $retStr .= '</ul>';
+    return $retStr;
 }
