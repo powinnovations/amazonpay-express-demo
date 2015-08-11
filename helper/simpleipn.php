@@ -120,10 +120,7 @@ function parseIpn($header, $body) {
             default:
                 $sendit = false;
         }
-        if ($subject === "") {
-            $sendit = false;
-        }
-        if ($to === "changeme@example.com") {
+        if ($subject === "" || $to === "changeme@example.com") {
             $sendit = false;
         }
 
