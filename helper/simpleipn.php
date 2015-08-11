@@ -18,7 +18,7 @@ $to = "changeme@example.com";
 $ipn_authorize = true;
 $ipn_capture = true;
 $ipn_refund = true;
-$ipn_close = true;
+$ipn_oro = true; // ORO state changes (e.g. open, close, etc.)
 
 
 
@@ -35,7 +35,7 @@ if (isset($header["x-amz-sns-message-type"])) {
 }
 
 function parseIpn($header, $body) {
-    global $ipn_authorize, $ipn_capture, $ipn_refund, $ipn_close, $to;
+    global $ipn_authorize, $ipn_capture, $ipn_refund, $ipn_oro, $to;
 
     if (!array_key_exists("x-amz-sns-message-type", $header)) {
         return "Invalid SNS message type in header.";
@@ -91,7 +91,7 @@ function parseIpn($header, $body) {
 
         switch ($type) {
             case "OrderReferenceNotification":
-                if ($ipn_close) {
+                if ($ipn_oro) {
                     $sendit = true;
                 }
                 $subject = "Order Reference Notification";
