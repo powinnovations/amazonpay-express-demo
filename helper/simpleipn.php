@@ -117,6 +117,7 @@ function parseIpn($header, $body) {
                 }
                 $subject = "Payment Refund Notification";
                 break;
+
             default:
                 $sendit = false;
         }
