@@ -4,7 +4,7 @@ require 'openssl'
 
 module ExpressAmazonPayments
 
-  # = Pay with Amazon - Express Payments - Demo
+  # Pay with Amazon - Express Payments - Demo
   # This client allows a seller to dynamically integrate with Express Payments by passing in the
   # required keys and adjustable parameter values (amount, seller_note, seller_order_id, shipping_address_required).
   # The client then generates a signature that is used to make the Express Payment request.
