@@ -10,13 +10,6 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     // Mandatory fields
     $amount      = $_REQUEST["amount"];
     
-    /* Add http:// or https:// before your Return URL
-    * The webpage of your site where the buyer should be redirected to after the payment is made
-    * In this example you can link it to the Result.php, which checks for the success or failure of the payment
-    * and routes it to the appropriate URL defined
-    */
-    $returnURL   = "http://yourdomain.com/Result.php";
-    
     // Optional fields
     $currencyCode            = $_REQUEST["currencyCode"];
     $sellerNote              = $_REQUEST["sellerNote"];
