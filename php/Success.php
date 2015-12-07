@@ -15,6 +15,7 @@
     $signatureReturned = $_GET['signature'];
     $parameters = $_GET;
     unset($parameters['signature']);
+    $parameters['sellerOrderId'] = rawurlencode($parameters['sellerOrderId']);
     uksort($parameters, 'strcmp');
 
     $parseUrl = parse_url($returnURL);
