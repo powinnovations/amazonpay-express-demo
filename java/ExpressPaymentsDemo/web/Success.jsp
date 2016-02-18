@@ -9,12 +9,12 @@
     <body>
         <%
 
-           // you can get an enumeratable list 
-            // of parameter keys by using request.getParameterNames() 
+           // you can get an enumeratable list
+            // of parameter keys by using request.getParameterNames()
             Enumeration en = request.getParameterNames();
-            out.println("The Transaction was Successful! Following are the parameters returned" + "<br/><br/>");
-           // enumerate through the keys and extract the values 
-            // from the keys! 
+            out.println("The transaction was successful! Following are the parameters returned:" + "<br/><br/>");
+           // enumerate through the keys and extract the values
+            // from the keys!
             while (en.hasMoreElements()) {
                 String parameterName = (String) en.nextElement();
                 String parameterValue = request.getParameter(parameterName);

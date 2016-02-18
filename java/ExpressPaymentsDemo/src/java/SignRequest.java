@@ -75,7 +75,8 @@ public class SignRequest {
          * In this example you can link it to the Result.jsp, which checks for the success or failure of the payment
          * and routes it to the appropriate URL defined
          */
-        String returnURL = "http://localhost:8080/ExpressPaymentsDemo/Result.jsp";
+        String returnURL = "http://localhost:8080/ExpressPaymentsDemo/Success.jsp";
+        String cancelReturnURL = "http://localhost:8080/ExpressPaymentsDemo/Cancel.jsp";
 
         // Optional fields
         String currencyCode = Requestvars.get("currencyCode");
@@ -95,6 +96,7 @@ public class SignRequest {
 
         // Put optional fields if there is any
         parameters.put("currencyCode", currencyCode);
+        parameters.put("cancelReturnURL", cancelReturnURL);
         parameters.put("sellerNote", sellerNote);
         parameters.put("sellerOrderId", sellerOrderId);
         parameters.put("shippingAddressRequired", shippingAddressRequired);
