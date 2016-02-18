@@ -71,9 +71,9 @@ public class SignRequest {
         String amount = Requestvars.get("amount");
 
         /* Add http:// or https:// before your Return URL
-         * The webpage of your site where the buyer should be redirected to after the payment is made
-         * In this example you can link it to the Result.jsp, which checks for the success or failure of the payment
-         * and routes it to the appropriate URL defined
+         * Return URL - The webpage of your site where the buyer should be redirected to after the payment is successful
+         * Cancel Return URL - The webpage of your site where the buyer should be redirected to if the checkout is abandoned or fails
+         *
          */
         String returnURL = "http://localhost:8080/ExpressPaymentsDemo/Success.jsp";
         String cancelReturnURL = "http://localhost:8080/ExpressPaymentsDemo/Cancel.jsp";
