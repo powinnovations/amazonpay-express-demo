@@ -29,7 +29,7 @@ public partial class ExpressPayment : System.Web.UI.Page
     { }
 
     /* View session state to prevent cross-site request forgery
-     * Supporting doc :http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6 
+     * Supporting doc :http://msdn.microsoft.com/en-us/library/ms972969.aspx#securitybarriers_topic6
      */
     protected override void OnInit(EventArgs e)
     {
@@ -56,13 +56,14 @@ public partial class ExpressPayment : System.Web.UI.Page
             throw new ArgumentNullException("lwaClientId", "lwaClientId is NULL, set the value in the configuration file ");
 
         string amount = Amount;
-		
+
         /* Add http:// or https:// before your Return URL
-         * The webpage of your site where the buyer should be redirected to after the payment is made
-         * In this example you can link it to the Result.jsp, which checks for the success or failure of the payment
-         * and routes it to the appropriate URL defined
+         * Return URL - The webpage of your site where the buyer should be redirected to after the payment is successful.
+         * Cancel Return URL - The webpage of your site where the buyer should be redirected to if the buyer abandons the checkout
+         * or the transaction fails.
          */
-        string returnURL = "http://yourdomain.com/Result.aspx";
+        string returnURL = "http://yourdomain.com/Success.aspx";
+        string cancelReturnURL = "http://yourdomain.com/Cancel.aspx";
 
         // Optional fields
         string currencyCode = CurrencyCode;
@@ -76,6 +77,7 @@ public partial class ExpressPayment : System.Web.UI.Page
         parameters.Add("sellerId", sellerId);
         parameters.Add("amount", amount);
         parameters.Add("returnURL", returnURL);
+        parameters.Add("cancelReturnURL", cancelReturnURL);
         parameters.Add("lwaClientId", lwaClientId);
         parameters.Add("sellerNote", sellerNote);
         parameters.Add("sellerOrderId", sellerOrderId);
