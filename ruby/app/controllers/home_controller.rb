@@ -17,6 +17,7 @@ class HomeController < ApplicationController
     seller_id = Rails.application.secrets.seller_id
     amount = params[:amount].to_s
     return_url = Rails.application.secrets.return_url
+    cancel_return_url = Rails.application.secrets.cancel_return_url
     lwa_client_id = Rails.application.secrets.lwa_client_id
 
     # Optional fields
@@ -29,10 +30,18 @@ class HomeController < ApplicationController
 
     # Initialize Express Amazon Payments client
     client = ExpressAmazonPayments::Client.new(
-    access_key, secret_key, seller_id, amount, return_url, lwa_client_id,
-    currency_code: currency_code, seller_note: seller_note, seller_order_id: seller_order_id,
-    shipping_address_required: shipping_address_required, payment_action: payment_action
-    )
+                 access_key,
+                 secret_key,
+                 seller_id,
+                 amount,
+                 return_url,
+                 lwa_client_id,
+                 currency_code: currency_code,
+                 seller_note: seller_note,
+                 seller_order_id: seller_order_id,
+                 shipping_address_required: shipping_address_required,
+                 payment_action: payment_action,
+                 cancel_return_url: cancel_return_url)
 
     render :json => client.signature
 

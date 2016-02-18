@@ -23,7 +23,20 @@ module ExpressAmazonPayments
     # * @optional seller_note [string] default:
     # * @optional seller_order_id [string] default:
     # * @optional shipping_address_required [string] default: true
-    def initialize(access_key, secret_key, seller_id, amount, return_url, lwa_client_id, currency_code: 'USD', payment_action: 'Authorize', seller_note: ' ', seller_order_id: ' ', shipping_address_required: 'true')
+    def initialize(
+            access_key,
+            secret_key,
+            seller_id,
+            amount,
+            return_url,
+            lwa_client_id,
+            currency_code: 'USD',
+            payment_action: 'Authorize',
+            seller_note: ' ',
+            seller_order_id: ' ',
+            shipping_address_required: 'true',
+            cancel_return_url: '')
+
       @access_key = access_key
       @secret_key = secret_key
       @seller_id = seller_id
@@ -35,6 +48,7 @@ module ExpressAmazonPayments
       @seller_note = seller_note
       @seller_order_id = seller_order_id
       @shipping_address_required = shipping_address_required
+      @cancel_return_url = cancel_return_url
     end
 
     # The signature method creates the hash with all parameter values.
@@ -46,6 +60,7 @@ module ExpressAmazonPayments
       parameters = {
         :accessKey => @access_key,
         :amount => @amount,
+        :cancelReturnURL => @cancel_return_url,
         :currencyCode => @currency_code,
         :lwaClientId => @lwa_client_id,
         :paymentAction => @payment_action,
