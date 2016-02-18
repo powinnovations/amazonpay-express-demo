@@ -6,17 +6,17 @@ session_start();
 if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     $_SESSION = array();
     session_destroy();
-    
+
     // Mandatory fields
     $amount      = $_REQUEST["amount"];
-    
+
     // Optional fields
     $currencyCode            = $_REQUEST["currencyCode"];
     $sellerNote              = $_REQUEST["sellerNote"];
     $sellerOrderId           = "YOUR_CUSTOM_ORDER_REFERENCE_ID";
     $shippingAddressRequired = "true";
     $paymentAction           = "AuthorizeAndCapture"; // other values None,Authorize
-    
+
     // Getting the MerchantID/sellerID, MWS secret Key, MWS Access Key from the configuration file
     if ($merchantId == "") {
         throw new InvalidArgumentException("merchantId not set in the configuration file");
@@ -30,31 +30,32 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     if ($lwaClientId == "") {
         throw new InvalidArgumentException("Login With Amazon ClientID is not set in the configuration file");
     }
-    
+
     //Addding the parameters to the PHP data structure
     $parameters["accessKey"]               = $accessKey;
     $parameters["amount"]                  = $amount;
     $parameters["sellerId"]                = $merchantId;
     $parameters["returnURL"]               = $returnURL;
+    $parameters["cancelReturnURL"]         = $cancelReturnURL;
     $parameters["lwaClientId"]             = $lwaClientId;
     $parameters["sellerNote"]              = $sellerNote;
     $parameters["sellerOrderId"]           = $sellerOrderId;
     $parameters["currencyCode"]            = $currencyCode;
     $parameters["shippingAddressRequired"] = $shippingAddressRequired;
     $parameters["paymentAction"]           = $paymentAction;
-    
+
     uksort($parameters, 'strcmp');
-    
+
     //call the function to sign the parameters and return the URL encoded signature
     $Signature = _urlencode(_signParameters($parameters, $secretKey));
-    
+
     //add the signature to the parameters data structure
     $parameters["signature"] = $Signature;
-    
+
     //echoing the parameters will be picked up by the ajax success function in the front end
     echo (json_encode($parameters));
 }
-    
+
 else{
     throw new Exception("Unknown Entity");
 }
@@ -64,7 +65,7 @@ function _signParameters(array $parameters, $key)
     $stringToSign = null;
     $algorithm    = "HmacSHA256";
     $stringToSign = _calculateStringToSignV2($parameters);
-    
+
     return _sign($stringToSign, $key, $algorithm);
 }
 

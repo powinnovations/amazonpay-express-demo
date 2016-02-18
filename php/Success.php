@@ -1,7 +1,7 @@
 <html>
    <body>
         <br />
-        <p>Your Transaction was successful. Following are the Parameters returned</p>
+        <p>Your transaction was successful. Following are the Parameters returned:</p>
         <br />
     </body>
     <?php

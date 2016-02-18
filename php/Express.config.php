@@ -10,6 +10,7 @@ $lwaClientId ="YOUR_LOGIN_WITH_AMAZON_CLIENT_ID"; // Login With Amazon Client ID
 * In this example you can link it to the Result.php, which checks for the success or failure of the payment
 * and routes it to the appropriate URL defined
 */
-$returnURL   = "http://yourdomain.com/Result.php";
+$returnURL   = "http://yourdomain.com/Success.php";
+$cancelReturnURL = "http://yourdomain.com/Cancel.php";
 
 ?>
