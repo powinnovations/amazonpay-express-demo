@@ -38,9 +38,9 @@ def response():
         seller_order_id=request.args.get('sellerOrderId'))
 
 @app.route('/cancel', methods=['GET'])
-def response():
+def cancel():
     return render_template('cancel.html',
-        result_code=request.args.get('resultCode')
+        result_code=request.args.get('resultCode'))
 
 @app.route('/express_signature', methods=['GET'])
 def signature():
