@@ -43,6 +43,7 @@ $_SESSION["token"] = md5(uniqid(mt_rand(), true));
                     amount: parseInt($("#amount").attr("value")) * parseInt($("#QuantitySelect option:selected").val()),
                     currencyCode: 'USD',
                     sellerNote: $("#itemname").text() + ' QTY: ' + $("#QuantitySelect option:selected").val(),
+                    scope: 'payments:billing_address',                   
                     csrf:$("#csrf").val()
 
                 }, function(data) {
