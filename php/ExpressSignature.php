@@ -13,6 +13,7 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     // Optional fields
     $currencyCode            = $_REQUEST["currencyCode"];
     $sellerNote              = $_REQUEST["sellerNote"];
+    $scope                   = $_REQUEST["scope"];
     $sellerOrderId           = "YOUR_CUSTOM_ORDER_REFERENCE_ID";
     $shippingAddressRequired = "true";
     $paymentAction           = "AuthorizeAndCapture"; // other values None,Authorize
@@ -43,6 +44,7 @@ if (isset($_REQUEST["csrf"]) && $_REQUEST["csrf"] == $_SESSION["token"]) {
     $parameters["currencyCode"]            = $currencyCode;
     $parameters["shippingAddressRequired"] = $shippingAddressRequired;
     $parameters["paymentAction"]           = $paymentAction;
+    $parameters["scope"]                   = $scope;
 
     uksort($parameters, 'strcmp');
 
