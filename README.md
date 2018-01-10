@@ -1,5 +1,5 @@
 # Introduction
-Have a simple payments need? [Express Integration](https://pay.amazon.com/developer/express) is the quickest way to enable [Amazon Pay](https://pay.amazon.com/) on your web and mobile sites. For simple purchases where you already know the tax and shipping costs, you can setup with Express Integration in minutes by adding simple HTML and JavaScript snippets. The demos included in this repository show how to perform an Express Integration in various languages (C#, Java, PHP, Ruby).
+Have a simple payments need? [Express Integration](https://pay.amazon.com/developer/express) is the quickest way to enable [Amazon Pay](https://pay.amazon.com/) on your web and mobile sites. For simple purchases where you already know the tax and shipping costs, you can set up with Express Integration in minutes by adding simple HTML and JavaScript snippets. The demos included in this repository show how to perform an Express Integration in various languages (C#, Java, PHP, Ruby).
 
 ##### These examples are suitable for the following scenarios:
 * If your parameters will change dynamically on the checkout page and cannot be preloaded.
